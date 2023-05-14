@@ -29,12 +29,15 @@ Different routes we´re gonna use
 
 ### movies routes
 
-| HTTP METHOD  |      URI          | Description                     | JSON |
-| :---         |     :---:         |   :---:                         | ---: |
-| GET          | /movie/search     | search movie form render        |      |
-| POST         | /movie/search     | search movie form handler       |      |
-| GET          | /movie            | matching movies list            |      |
-| GET          | /movie/:id        | Locations map with movie details|      |
+| HTTP METHOD  |      URI          | Description                            | JSON             |
+| :---         |     :---:         |   :---:                                | ---:             |
+| GET          | /movie/search     | search movie form render               |                  |
+| GET          | /movie/create     | (conditional), create movie form render|                  |
+| POST         | /movie/create     | create movie form handler              |                  |
+| GET          | /movie            | matching movies list                   |                  |
+| GET          | /movie/:id        | Locations map with movie details       |                  |
+| GET          | api/movie/        | Movies List                            |:white_check_mark:|
+| GET          | api/movie/:id     | Movie details                          |:white_check_mark:|
 
 ### lists routes
 
