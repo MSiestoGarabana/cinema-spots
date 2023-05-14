@@ -5,6 +5,8 @@ Module 2 final proyect with my pal Belén Sánchez!
 # routes
 Different routes we´re gonna use
 
+## user routes
+
 | HTTP METHOD  |      URI         | Description           | JSON |
 | :---         |     :---:        |   :---:               | ---: |
 | GET          | /users           | users list            |      |
