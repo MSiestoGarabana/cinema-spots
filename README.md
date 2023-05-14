@@ -49,7 +49,7 @@ Different routes we´re gonna use
 | GET          | /list/:id         | list details (movies)           |      |
 | GET          | /list/:id/edit    | edit list (name) form render    |      |
 | POST         | /list/:id/edit    | edit list (name)form handler    |      |
-| POST         | /list/:id/delete  | delete user                     |      |
+| POST         | /list/:id/delete  | delete list                     |      |
 
 
 ***To come(?) Most popular lists routes
