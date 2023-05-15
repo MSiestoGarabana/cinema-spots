@@ -9,7 +9,7 @@ Different routes we´re gonna use
 
 | HTTP METHOD  |      URI          | Description                     | JSON |
 | :---         |     :---          |   :---                          | ---: |
-| GET          | /user/find        | render find-user form           |      |
+| GET          | `/user/find`      | render find-user form           |      |
 | POST         | /user/find        | handler find-user form          |      |
 | GET          | /user             | matching users list             |      |
 | GET          | /user/:id         | user details                    |      |
@@ -30,7 +30,7 @@ Different routes we´re gonna use
 ### movies routes
 
 | HTTP METHOD  |      URI          | Description                            | JSON             |
-| :---         |     :---:         |   :---:                                | ---:             |
+| :---         |     :---          |   :---                                 | ---:             |
 | GET          | /movie/search     | search movie form render               |                  |
 | GET          | /movie/create     | (conditional), create movie form render|                  |
 | POST         | /movie/create     | create movie form handler              |                  |
@@ -42,7 +42,7 @@ Different routes we´re gonna use
 ### lists routes
 
 | HTTP METHOD  |      URI          | Description                     | JSON |
-| :---         |     :---:         |   :---:                         | ---: |
+| :---         |     :---          |   :---                          | ---: |
 | GET          | /list/:id         | users list                      |      |
 | GET          | /list/create      | new list form render            |      |
 | POST         | /list/create      | new list form handler           |      |
