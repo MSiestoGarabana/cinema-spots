@@ -6,14 +6,14 @@ const listSchema = new Schema(
             type: String,
             required: true, 
         },
-
-        movies: {
-            [{
-                type: Schema.Types.ObjectId,
-                ref: 'Movie',
-            }]
-        },
-
+        movies: [{
+            type: Schema.Types.ObjectId,
+            ref: 'Movie',
+        }],
+        owner: {
+            type: Schema.Types.ObjectId,
+            ref: 'User'
+        }, 
     },
     {
         timestamps: true,

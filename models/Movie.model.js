@@ -1,35 +1,31 @@
 const { Schema, model } = require('mongoose');
 
 const movieSchema = new Schema(
-
     {
         title: { 
             type: String, 
+            required: true
         },
-
         genre: { 
-            type: String,
+            type: [{
+                id: Number,
+                name: String,
+            }],
+            required: false
         },
-
-        plot: { 
+        overview: { 
             type: String, 
+            required: true
         },
-
         poster: { 
             type: String,
+            required: true
         },
-
-        year: {
-            type: Number,
+        releaseDate: {
+            type: Date,
+            required: true
         },
-
-        location: [{
-            type: Schema.Types.ObjectId,
-            ref: 'Place',
-        }],
-
     },
-
     {
         timestamps: true
     }
