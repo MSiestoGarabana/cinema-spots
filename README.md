@@ -8,7 +8,7 @@ Different routes we´re gonna use
 ### user routes
 
 | HTTP METHOD  |      URI          | Description                     | JSON |
-| :---         |     :---:         |   :---:                         | ---: |
+| :---         |     :---          |   :---                          | ---: |
 | GET          | /user/find        | render find-user form           |      |
 | POST         | /user/find        | handler find-user form          |      |
 | GET          | /user             | matching users list             |      |
@@ -20,7 +20,7 @@ Different routes we´re gonna use
 ### auth routes
 
 | HTTP METHOD  |      URI          | Description                     | JSON |
-| :---         |     :---:         |   :---:                         | ---: |
+| :---         |     :---          |   :---                          | ---: |
 | GET          | /signUp           | render sign-up form             |      |
 | POST         | /signUp           | handler sign-up form            |      |
 | GET          | /logIn            | render log-in form              |      |
