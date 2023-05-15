@@ -34,8 +34,8 @@ const userSchema = new Schema(
       default: 'https://i.stack.imgur.com/l60Hf.png'
     },
     country: {
+      type: String,
       required: false,
-      type: String
     }
   },
   {

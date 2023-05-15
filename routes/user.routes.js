@@ -1,10 +1,10 @@
 const express = require('express')
 const router = express.Router()
-
+const { isLoggedIn, checkRoles, checkUser } = require('../middlewares/routes-guard')
 const User = require('../models/User.model')
 
 //Users lists
-router.get('/list', (req, res, next) => {
+router.get('/list', isLoggedIn, (req, res, next) => {
 
     User
     .find()
@@ -15,7 +15,7 @@ router.get('/list', (req, res, next) => {
 
 
 //User profile
-router.get('/:id', (req, res, next) => {
+router.get('/:id', isLoggedIn, (req, res, next) => {
 
     const { id } = req.params
     
@@ -34,7 +34,7 @@ router.get('/:id', (req, res, next) => {
  
 
 //Modify users profile
-router.get('/:id/edit', (req, res, next) => {
+router.get('/:id/edit', isLoggedIn, checkUser, (req, res, next) => {
 
     const { id } = req.params
 
@@ -44,20 +44,20 @@ router.get('/:id/edit', (req, res, next) => {
         .catch(err => next(err))
 })
 
-router.post('/:id/edit', (req, res, next) => {
+router.post('/:id/edit', isLoggedIn, checkUser, (req, res, next) => {
 
-    const { name, email, password, rol, description, avatar, country } = req.body
+    const { name, email, password, role, description, avatar, country } = req.body
     const { id } = req.params
 
     User
-        .findByIdAndUpdate(id, { name, email, password, rol, description, avatar, country })
+        .findByIdAndUpdate(id, { name, email, password, role, description, avatar, country })
         .then(() => res.redirect('/'))
         .catch(err => next(err))
 })
 
 
 //Delete user
-router.post('/:id/delete', (req, res, next) => {
+router.post('/:id/delete', isLoggedIn, checkRoles("ADMIN"), (req, res, next) => {
 
     const { id } = req.params
 

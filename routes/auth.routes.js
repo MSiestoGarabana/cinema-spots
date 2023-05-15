@@ -2,29 +2,35 @@ const router = require("express").Router()
 const bcrypt = require('bcryptjs')
 const saltRounds = 10
 
-const User = require("../models/User.model")
-
-const { isLoggedOut } = require('../middlewares/route-guards')
+const User = require("./../models/User.model")
 
 
 //Sign Up
-router.get('/signup', (req, res, next) => res.render('auth/signup'))
+router.get('/signup', (req, res, next) => {
+    
+    res.render('auth/signup')
+
+})
 
 router.post('/signup', (req, res, next) => {
 
-    const { name, email, password, rol, description, avatar, country } = req.body
+     const { name, email, password, role, description, avatar, country } = req.body
 
     bcrypt
-        .getSalt(saltRounds)
+        .genSalt(saltRounds)
         .then(salt => bcrypt.hash(password, salt))
-        .then(hashedPassword => User.create({ name, email, password: hashedPassword, rol, description, avatar, country }))
-        .then(createdUser => res.redirect('/'))
-        .catch(error => next(error))
+        .then(hashedPassword => User.create({ name, email, password: hashedPassword, role, description, avatar, country }))
+        .then(() => res.redirect('/login'))
+        .catch(error => next(error)) 
 })
 
 
 //Log In
-router.get('/login', (req, res, next) => res.render('auth/login'))
+router.get('/login', (req, res, next) => {
+    
+    res.render('auth/login')
+
+})
 
 router.post('/login', (req, res, next) => {
 
@@ -39,15 +45,22 @@ router.post('/login', (req, res, next) => {
     User
         .findOne({ email })
         .then(user => {
+
             if (!user) {
+                
                 res.render('auth/login', { errorMessage: 'Email not found in the database' })
                 return
-            } else if (bcrypt.compareSync(userPwd, user.password) === false) {
+            
+            } else if (bcrypt.compareSync(password, user.password) === false) {
+                
                 res.render('auth/login', { errorMessage: 'Incorrect password' })
                 return
+            
             } else {
+                
                 req.session.currentUser = user
                 res.redirect('/')
+            
             }
         })
         .catch(error => next(error))
