@@ -4,11 +4,11 @@ const router = express.Router()
 const User = require('../models/User.model')
 
 //Users lists
-router.get('/', (req, res, next) => {
+router.get('/list', (req, res, next) => {
 
     User
     .find()
-    .then(user => res.send("users/user-list", { user } ))
+    .then(user => res.render("users/user-list", { user } ))
     .catch(err => next(err))
 
 })

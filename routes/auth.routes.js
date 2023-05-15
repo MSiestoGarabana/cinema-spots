@@ -4,6 +4,8 @@ const saltRounds = 10
 
 const User = require("../models/User.model")
 
+const { isLoggedOut } = require('../middlewares/route-guards')
+
 
 //Sign Up
 router.get('/signup', (req, res, next) => res.render('auth/signup'))
@@ -23,9 +25,16 @@ router.post('/signup', (req, res, next) => {
 
 //Log In
 router.get('/login', (req, res, next) => res.render('auth/login'))
+
 router.post('/login', (req, res, next) => {
 
     const { email, password } = req.body
+
+    if ( email.length === 0 || password.length === 0) {
+        
+        res.render('auth/login', {errorMessage: 'You must fill all the fields'})
+        return
+    }
 
     User
         .findOne({ email })
@@ -46,7 +55,9 @@ router.post('/login', (req, res, next) => {
 
 // Log Out
 router.post('/logout', (req, res, next) => {
+
     req.session.destroy(() => res.redirect('/login'))
+
 })
 
 module.exports = router
