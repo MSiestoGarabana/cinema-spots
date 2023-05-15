@@ -1,9 +1,8 @@
-const { Schema, model } = require("mongoose");
+const { Schema, model } = require('mongoose')
 
-// TODO: Please make sure you edit the User model to whatever makes sense in this case
 const userSchema = new Schema(
   {
-    username: {
+    name: {
       type: String,
       trim: true,
       required: true,
@@ -19,14 +18,33 @@ const userSchema = new Schema(
     password: {
       type: String,
       required: true
+    },
+    rol: {
+      type: String,
+      required: false,
+      enum: ['ADMIN', 'USER'],
+      default: 'USER',
+    },
+    description: {
+      type: String,
+      required: false,
+      default: 'Description not found.'
+    },
+    avatar: {
+      type: String,
+      required: false,
+      default: 'https://i.stack.imgur.com/l60Hf.png'
+    },
+    country: {
+      required: false,
+      type: String
     }
   },
   {
-    // this second object adds extra properties: `createdAt` and `updatedAt`    
     timestamps: true
   }
 );
 
 const User = model("User", userSchema);
 
-module.exports = User;
+module.exports = User

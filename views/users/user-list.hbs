@@ -1,0 +1,41 @@
+<div class="container">
+
+    <h1>List of users</h1>
+
+    <hr>
+
+    <div class="row justify-content-center">
+
+        {{#each user}}
+
+        <div class="col-md-4">
+
+            <div class="card">
+
+                <img class="card-img-top" src="{{avatar}}" alt="{{name}}">
+
+                <div class="card-body">
+
+                    <h2 class="card-title">{{name}}</h2>
+
+                    <h3>{{country}}</h3>
+
+                    <a href="/user/{{id}}" class="btn btn-sm btn-info">Profile</a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        {{/each}}
+
+        <hr>
+
+        <div class="button">
+            <a href="/" class="btn btn-dark">Home</a>
+        </div>
+
+    </div>
+
+</div>

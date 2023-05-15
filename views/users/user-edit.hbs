@@ -1,0 +1,41 @@
+<div class="container">
+    <h2>Update your profile</h2>
+
+    <hr>
+    <div class="row justify-content-center">
+
+        <div class="col-6">
+            <form action="/user/{{id}}/edit" method="POST">
+                <div class="mb-3">
+                    <label for="name" class="form-label">Name</label>
+                    <input type="text" class="form-control" id="name" name="name" value="{{name}}">
+                </div>
+
+                <div class="mb-3">
+                    <label for="email" class="form-label">Email</label>
+                    <input type="email" class="form-control" id="email" name="email" value="{{email}}">
+                </div>
+
+                <div class="mb-3">
+                    <label for="country" class="form-label">Country</label>
+                    <input type="text" class="form-control" id="country" name="country" value="{{country}}">
+                </div>
+
+                <div class="mb-3">
+                    <label for="description" class="form-label">Description</label>
+                    <input type="text" class="form-control" id="description" name="description" value="{{description}}">
+                </div>
+
+                <div class="mb-3">
+                    <label for="avatar" class="form-label" enctype="multipart/form-data">Avatar</label>
+                    <input type="file" class="form-control" id="avatar" name="avatar" value="{{avatar}}">
+                </div>
+
+                <button type="submit" class="mb-5 mt-2 btn btn-dark">Update your profile</button>
+
+            </form>
+
+        </div>
+
+    </div>
+</div>
