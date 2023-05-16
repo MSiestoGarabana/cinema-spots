@@ -1,5 +1,6 @@
 body {
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  height: 100vh;
 }
 
 a {
@@ -13,8 +14,6 @@ h1 {
 img {
   width: 100%;
 }
-
-/* #detailCard__body--imageContainer {} */
 
 #listCard__body--movieList {
   height: 30vh;
@@ -39,4 +38,13 @@ img {
   width: 100%;
   margin: 0;
   padding: 8%;
+}
+
+#map {
+  height: 70vh;
+  width: 90%;
+  margin-left: 5%;
+  margin-top: 5%;
+  border-radius: 40px;
+  background-color: rgb(233, 233, 233);
 }
