@@ -2,6 +2,10 @@ const { Schema, model } = require("mongoose");
 
 const placeSchema = new Schema(
     {
+        movieTitle: {
+            type: String,
+            required: true,
+        },
         name: { 
             type: String,
             required: true
