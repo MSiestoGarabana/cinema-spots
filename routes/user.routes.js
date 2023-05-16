@@ -1,7 +1,7 @@
 const express = require('express')
 const router = express.Router()
 const { isLoggedIn, checkRoles, checkUser } = require('../middlewares/routes-guard')
-const { uploaderMiddleware } = require('../middleware/uploader.middleware')
+const { uploaderMiddleware } = require('../middlewares/uploader.middleware')
 const User = require('../models/User.model')
 
 //Users lists
