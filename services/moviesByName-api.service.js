@@ -11,12 +11,11 @@ class MoviesApiHandler {
 
     findMovieByName(title) {
         let queryTitle = title.toLowerCase().split(" ").join("+");
-       // return this.axiosApp.get("/search/movie?api_key=" + this.key + '&query=' + queryTitle)  
         return this.axiosApp.get(`/search/movie?api_key=${this.key}&query=${queryTitle}`)  
 
     }
     findMovieByID(id){
-        return this.axiosApp.get("movie/" + id + "?api_key=" + this.key )
+        return this.axiosApp.get(`movie/${id}?api_key=${this.key}`)
     }
 
 }

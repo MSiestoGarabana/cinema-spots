@@ -1,48 +1,29 @@
+{{#with movieData}}
 <div class="container">
-
-    <hr>
-
     <div class="row">
-        
-        <div class="card" style="width: 18rem;">
+        <div class="card" style="width: 50rem;">
+            <div class="card-body d-flex">
 
-            <div class="card-body">
+                <div id="detailCard__body--imageContainer">
+                    <img src="https://image.tmdb.org/t/p/original/{{poster_path}}" alt="{{title}} poster image">
+                </div>
 
-                <h2>{{title}}</h2>
+                <div style="height: 100%;">
+                    <h2>{{title}}</h2>
+                    <p>{{overview}}</p>
 
-                    <hr>
-
-                    <h3>Genre:</h3>
-                    {{#each genres}}
-                    <h4>
-                        </h5>
-                        <hr>
-                        <h3>Plot:</h3>
-                        <h5>{{plot}}
-                    </h4>
-                    <hr>
-                    <h3>Cast:</h5>
-                        <hr>
-                        {{!-- mira, el autoformat de VSC me deja lo de abajo así como está, yo ya non puc mes --}}
-                        {{#each cast}}
-                        <h5>{{name}}</h5>
-                        
-                        <ul>
-                            <h6>Occupation:</h6>
-                            <li>{{occupation}}</li>
-                            <hr>
-                            <h6>catchPhrase:</h6>
-                            <li>{{catchPhrase}}</li>
-                        </ul>
+                    <h3>genres:</h3>
+                    <ul>
+                        {{#each genres}}
+                        <li>{{name}}</li>
                         {{/each}}
-                        <hr>
-                        <a class="btn btn-sm btn-dark" href="/">Back to menu</a>
-                        <a class="btn btn-sm btn-dark m-1" href="/movies">Back to movies</a>
-                        <form action="/movies/{{_id}}/delete" method="POST" style="display: inline;">
-                            <input type="submit" value="delete" class="btn btn-sm btn-danger">
-                        </form>
-                        <a class="btn btn-sm btn-warning m-3" href="/movies/{{_id}}/edit">Edit</a>
+                    </ul>
+                    <a class="btn btn-sm btn-dark" href="/">Back to menu</a>
+                    <a class="btn btn-sm btn-dark m-1" href="/movie/search">Search a new movie</a>
+                </div>
+
             </div>
         </div>
     </div>
 </div>
+{{/with}}
