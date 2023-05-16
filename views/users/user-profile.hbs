@@ -1,5 +1,19 @@
 <h1>users profile</h1>
 
-{{name}}
+<h2>Holi {{user.name}}</h2>
 
-<h2>Holi Miguel</h2>
+
+
+{{#if userRole.isADMIN}}
+    <a href="/user/{{user.id}}/edit" class="btn btn-warning">Edit</a>
+
+    <form action="/user/{{user.id}}/delete" method="POST" style="display: inline">
+        <input type="submit" value="Delete" class="btn btn-danger">
+    </form>
+{{/if}}
+
+{{#if userRole.isUSER}}
+
+    <a href="/user/{{user.id}}/edit" class="btn btn-warning">Edit</a>
+
+{{/if}}

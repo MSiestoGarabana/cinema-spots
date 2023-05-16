@@ -1,7 +1,7 @@
 const router = require("express").Router()
 const bcrypt = require('bcryptjs')
 const saltRounds = 10
-
+const uploaderMiddleware = require('../middleware/uploader.middleware')
 const User = require("./../models/User.model")
 
 
@@ -12,7 +12,7 @@ router.get('/signup', (req, res, next) => {
 
 })
 
-router.post('/signup', (req, res, next) => {
+router.post('/signup', uploaderMiddleware.single('avatar'), (req, res, next) => {
 
      const { name, email, password, role, description, avatar, country } = req.body
 
@@ -62,9 +62,8 @@ router.post('/login', (req, res, next) => {
                 return
             
             } else {
-                req.session.currentUser = user
-                console.log("USEEEEERRR", req.session.currentUser)
 
+                req.session.currentUser = user
                 res.redirect('/')
             
             }
