@@ -14,7 +14,7 @@ const checkRoles = (...admittedRoles) => (req, res, next) => {
     }
 }
 
-const checkUser = (req, res, next) => {
+const checkOwnerOrAdmin = (req, res, next) => {
 
     if (req.params.id === req.session.currentUser._id || req.session.currentUser.role === "ADMIN") {
         next()
@@ -24,4 +24,4 @@ const checkUser = (req, res, next) => {
     }
 }
 
-module.exports = { isLoggedIn, checkRoles, checkUser }
+module.exports = { isLoggedIn, checkRoles, checkOwnerOrAdmin }

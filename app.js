@@ -17,6 +17,25 @@ const projectName = "movie-spot";
 
 app.locals.appTitle = `${capitalize(projectName)} created with IronLauncher`;
 
+app.use((req, res, next) => {
+    
+    app.locals.isLoggedUser = req.session.currentUser
+    next()
+})
+
+app.use((req, res, next) => {
+    
+    app.locals.notLoggedUser != req.session.currentUser
+    next()
+})
+
+// app.use((req, res, next) => {
+
+//     app.locals.checkOwnerOrAdmin = req.session.currentUser
+//     next()
+// })
+
+
 const indexRoutes = require("./routes/index.routes");
 app.use("/", indexRoutes);
 
