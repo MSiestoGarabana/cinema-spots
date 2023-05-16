@@ -19,7 +19,12 @@ router.post('/signup', (req, res, next) => {
     bcrypt
         .genSalt(saltRounds)
         .then(salt => bcrypt.hash(password, salt))
-        .then(hashedPassword => User.create({ name, email, password: hashedPassword, role, description, avatar, country }))
+        .then(hashedPassword => {
+            
+            User
+                .create({ name, email, password: hashedPassword, role, description, avatar, country })
+
+        })
         .then(() => res.redirect('/login'))
         .catch(error => next(error)) 
 })
@@ -57,8 +62,9 @@ router.post('/login', (req, res, next) => {
                 return
             
             } else {
-                
                 req.session.currentUser = user
+                console.log("USEEEEERRR", req.session.currentUser)
+
                 res.redirect('/')
             
             }
