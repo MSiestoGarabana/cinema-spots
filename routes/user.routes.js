@@ -1,8 +1,9 @@
 const express = require('express')
 const router = express.Router()
 const { isLoggedIn, checkRoles, checkUser } = require('../middlewares/routes-guard')
-const { uploaderMiddleware } = require('../middleware/uploader.middleware')
+const uploaderMiddleware = require('../middlewares/uploader.middleware')
 const User = require('../models/User.model')
+
 
 //Users lists
 router.get('/list', isLoggedIn, (req, res, next) => {
@@ -38,7 +39,7 @@ router.get('/:id', isLoggedIn, (req, res, next) => {
  
 
 //Modify users profile
-router.get('/:id/edit', isLoggedIn, checkUser, uploaderMiddleware.single('avatar'), (req, res, next) => {
+router.get('/:id/edit', isLoggedIn, checkUser, (req, res, next) => {
 
     const { id } = req.params
 
@@ -48,9 +49,10 @@ router.get('/:id/edit', isLoggedIn, checkUser, uploaderMiddleware.single('avatar
         .catch(err => next(err))
 })
 
-router.post('/:id/edit', isLoggedIn, checkUser, uploaderMiddleware.single('avatar'), (req, res, next) => {
+router.post('/:id/edit', isLoggedIn, checkUser, uploaderMiddleware.single("avatar"), (req, res, next) => {
 
-    const { name, email, password, role, description, avatar, country } = req.body
+    const {path: avatar } =req.file
+    const { name, email, password, role, description, country } = req.body
     const { id } = req.params
 
     User

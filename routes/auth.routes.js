@@ -1,7 +1,7 @@
 const router = require("express").Router()
 const bcrypt = require('bcryptjs')
 const saltRounds = 10
-const uploaderMiddleware = require('../middleware/uploader.middleware')
+const uploaderMiddleware = require('../middlewares/uploader.middleware')
 const User = require("./../models/User.model")
 
 
@@ -14,7 +14,9 @@ router.get('/signup', (req, res, next) => {
 
 router.post('/signup', uploaderMiddleware.single('avatar'), (req, res, next) => {
 
-     const { name, email, password, role, description, avatar, country } = req.body
+    const {path: avatar } =req.file
+
+    const { name, email, password, role, description, country } = req.body
 
     bcrypt
         .genSalt(saltRounds)
