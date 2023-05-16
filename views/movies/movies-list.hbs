@@ -1,33 +1,18 @@
 <div class="container">
 
     <h2>Results of "{{title}}" search</h2>
-
     <hr>
 
     <div class="row">
-
         {{#each movies}}
-
-        <div class="card m-2" style="width: 18rem;">
-
-            <div class="card-body">
-
-                <hr>
-
-                <h5 class="card-title">{{title}}</h5>
-
-                <a href="/movie/{{id}}">Check locations</a>
-
-                <hr>
-
-            </div>
-
-        </div>
+        <a href="/movie/{{id}}" class="card m-2" id="listCard__body--movieList"
+            style="background-image: url('https://image.tmdb.org/t/p/original/{{poster_path}}')">
+            <h5 id="listCard__title">{{title}}</h5>
+        </a>
 
         {{/each}}
-
     </div>
 
     <a class="btn btn-dark mt-3" href="/">Back to menu</a>
-    
+
 </div>

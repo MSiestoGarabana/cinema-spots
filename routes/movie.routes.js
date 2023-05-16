@@ -21,7 +21,7 @@ router.get("/:id", (req, res, next) => {
 
     moviesApiHandler
     .findMovieByID(id)
-    .then(response => {res.send(response.data)})
+    .then(response => {res.render('movies/movies-detail', {movieData: response.data})})
     .catch(err => next(err))
 })
 

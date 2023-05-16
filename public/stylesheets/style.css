@@ -9,3 +9,34 @@ a {
 h1 {
   color: 15px;
 }
+
+img {
+  width: 100%;
+}
+
+#detailCard__body--imageContainer {}
+
+#listCard__body--movieList {
+  height: 30vh;
+  width: 18rem;
+  border: 10px solid rgb(0, 0, 0);
+  border-radius: 5px;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+#listCard__body--movieList:hover {
+  height: 32vh;
+  width: 20rem;
+}
+
+#listCard__title {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  color: white;
+  background-color: black;
+  width: 100%;
+  margin: 0;
+  padding: 8%;
+}
