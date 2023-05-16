@@ -1,0 +1,17 @@
+<div class="container">
+    <h2>Results of "{{title}}" search</h2>
+    <hr>
+    <div class="row">
+        {{#each movies}}
+        <div class="card m-2" style="width: 18rem;">
+            <div class="card-body">
+                <hr>
+                <h5 class="card-title">{{title}}</h5>
+                <a href="/movie/{{id}}">Check locations</a>
+                <hr>
+            </div>
+        </div>
+        {{/each}}
+    </div>
+    <a class="btn btn-dark mt-3" href="/">Back to menu</a>
+</div>

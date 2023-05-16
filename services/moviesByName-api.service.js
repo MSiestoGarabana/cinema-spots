@@ -4,16 +4,21 @@ class MoviesApiHandler {
 
     constructor() {
         this.axiosApp = axios.create({
-            baseURL: 'https://ih-crud-api.herokuapp.com'
-        })
+            baseURL: 'https://api.themoviedb.org/3'
+        }),
+        this.key = process.env.API_KEY
     }
 
-    findMoviesByName() {
-        return this.axiosApp.get('/characters')
+    findMovieByName(title) {
+        let queryTitle = title.toLowerCase().split(" ").join("+");
+       // return this.axiosApp.get("/search/movie?api_key=" + this.key + '&query=' + queryTitle)  
+        return this.axiosApp.get(`/search/movie?api_key=${this.key}&query=${queryTitle}`)  
+
+    }
+    findMovieByID(id){
+        return this.axiosApp.get("movie/" + id + "?api_key=" + this.key )
     }
 
 }
 
-const moviesApiHandler = new MoviesApiHandler()
-
-module.exports = moviesApiHandler
+module.exports = new MoviesApiHandler()

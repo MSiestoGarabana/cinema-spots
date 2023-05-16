@@ -6,19 +6,19 @@
             <form action="/movie/search" method="POST">
 
                 <div class="mb-3">
-
-                    <input value="Write movie title" type="text" class="form-control" id="title" name="title">
+                    <input required placeholder="Write movie title" type="text" class="form-control" id="title"
+                        name="title">
                 </div>
 
                 <div class="d-grid gap-2">
                     <button type="submit" class="btn btn-dark block">Access</button>
                 </div>
 
-                {{#if errorMessage}}
+                {{!-- {{#if errorMessage}}
                 <div id="errorMessage">
                     <p>{{errorMessage}}</p>
                 </div>
-                {{/if}}
+                {{/if}} --}}
             </form>
         </div>
     </div>
