@@ -5,6 +5,7 @@
 
     <div class="row justify-content-between">
         {{#each movies}}
+<<<<<<< HEAD
 
         <a href="/movie/{{id}}" class="col-4 card m-2" id="listCard__body--movieList"
             style="background-image: url('https://image.tmdb.org/t/p/original/{{poster_path}}')">
@@ -14,6 +15,14 @@
         <a href="#" class="card-link">Add to Favs</a>
         <a href="#" class="card-link">Add to a List</a>
 
+=======
+        <form action="/movie/{{id}}" method="POST">
+            <a href="/movie/{{id}}" class="col-4 card m-2" id="listCard__body--movieList"
+                style="background-image: url('https://image.tmdb.org/t/p/original/{{poster_path}}')">
+                <h5 id="listCard__title">{{title}}</h5>
+            </a>
+        </form>
+>>>>>>> 8a160c0c0061e71f6147dbb13d9ab4563d04c1bb
         {{/each}}
     </div>
 
