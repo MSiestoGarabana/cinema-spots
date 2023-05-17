@@ -38,7 +38,6 @@ router.get('/:id', isLoggedIn, (req, res, next) => {
     User
         .findById(id)
         .then(user => {
-            console.log(userRole)
             res.render("users/user-profile", {user, userRole})
         })
         .catch(err => next(err)) 
