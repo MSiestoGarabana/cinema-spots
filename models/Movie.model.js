@@ -6,7 +6,7 @@ const movieSchema = new Schema(
             type: String, 
             required: true
         },
-        genre: { 
+        genres: { 
             type: [{
                 id: Number,
                 name: String,
@@ -25,6 +25,14 @@ const movieSchema = new Schema(
             type: Date,
             required: true
         },
+        markers: [{
+            type: Schema.Types.ObjectId,
+            ref: 'Marker'
+        }],
+        movie_ID: {
+            type: String,
+            required: true
+        }
     },
     {
         timestamps: true
