@@ -28,7 +28,7 @@ const markerSchema = new Schema(
         movieFrame: {
             type: String,
             required: false
-        }
+        },
         markerId: {
             type: ObjectId,
             required: true

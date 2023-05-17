@@ -21,12 +21,7 @@ router.post('/signup', uploaderMiddleware.single('avatar'), (req, res, next) => 
     bcrypt
         .genSalt(saltRounds)
         .then(salt => bcrypt.hash(password, salt))
-        .then(hashedPassword => {
-            
-            User
-                .create({ name, email, password: hashedPassword, role, description, avatar, country })
-
-        })
+        .then(hashedPassword => User.create({ name, email, password: hashedPassword, role, description, avatar, country }))
         .then(() => res.redirect('/login'))
         .catch(error => next(error)) 
 })

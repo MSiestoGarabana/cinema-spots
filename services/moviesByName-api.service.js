@@ -5,12 +5,14 @@ class MoviesApiHandler {
     constructor() {
         this.axiosApp = axios.create({
             baseURL: 'https://api.themoviedb.org/3'
-        }),
+        })
+
         this.key = process.env.API_KEY
     }
 
     findMovieByName(title) {
-        let queryTitle = title.toLowerCase().split(" ").join("+");
+        let queryTitle = title.toLowerCase().split(" ").join("+")
+        
         return this.axiosApp.get(`/search/movie?api_key=${this.key}&query=${queryTitle}`)  
     }
     

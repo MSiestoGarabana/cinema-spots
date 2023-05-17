@@ -3,6 +3,7 @@ const router = express.Router()
 const { isLoggedIn, checkRoles, checkOwnerOrAdmin } = require('../middlewares/routes-guard')
 const uploaderMiddleware = require('../middlewares/uploader.middleware')
 const User = require('../models/User.model')
+const { getUserRoles } = require('../utils/role-handling')
 
 
 //Users lists
@@ -20,26 +21,12 @@ router.get('/list', isLoggedIn, (req, res, next) => {
 router.get('/:id', isLoggedIn, (req, res, next) => {
 
     const { id } = req.params
-    let isAdmin = req.session.currentUser?.role === "ADMIN"
-    let isOwner = req.session.currentUser?._id === id
-    let isAdminAndOwner = req.session.currentUser?.role ==="ADMIN" && req.session.currentUser?._id === id
-    
-    if(isAdminAndOwner){
-        isAdmin = false
-        isOwner = false
-    }
 
-    const userRole = {
-        isAdmin: isAdmin ,
-        isOwner: isOwner ,
-        isAdminAndOwner: isAdminAndOwner  
-    }
+    const userRole = getUserRoles(req.session.currentUser, id)
 
     User
         .findById(id)
-        .then(user => {
-            res.render("users/user-profile", {user, userRole})
-        })
+        .then(user => res.render("users/user-profile", {user, userRole}))
         .catch(err => next(err)) 
 })
 
@@ -52,13 +39,13 @@ router.get('/:id/edit', isLoggedIn, checkOwnerOrAdmin, (req, res, next) => {
 
     User 
         .findById(id)
-        .then(user =>initMap(), res.render('users/user-edit', user))
+        .then(user => res.render('users/user-edit', user))
         .catch(err => next(err))
 })
 
 router.post('/:id/edit', isLoggedIn, checkOwnerOrAdmin, uploaderMiddleware.single("avatar"), (req, res, next) => {
 
-    const {path: avatar } =req.file
+    const { path: avatar } =req.file
     const { name, email, password, role, description, country } = req.body
     const { id } = req.params
 
