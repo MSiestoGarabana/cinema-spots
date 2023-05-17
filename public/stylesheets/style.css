@@ -47,6 +47,11 @@ img {
   justify-content: center;
 }
 
+#movieDetail__downSectionContainer {
+  background-color: rgb(149, 149, 149);
+  width: 100%;
+}
+
 #map {
   height: 70vh;
   width: 90%;
