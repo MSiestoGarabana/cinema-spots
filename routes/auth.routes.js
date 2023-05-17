@@ -14,7 +14,7 @@ router.get('/signup', (req, res, next) => {
 
 router.post('/signup', uploaderMiddleware.single('avatar'), (req, res, next) => {
 
-    const {path: avatar } =req.file
+    const { path: avatar } = req.file
 
     const { name, email, password, role, description, country } = req.body
 

@@ -1,0 +1,25 @@
+<div class="container">
+
+    <h2>My lists</h2>
+    
+    <hr>
+
+    {{#each list}}
+    <div class="card" style="width: 18rem;">
+
+        <div class="card-body">
+
+            <a href="/list/{{_id}}/details">{{name}}</a>
+
+        </div>
+    </div>
+    {{/each}}
+
+    <a class="btn btn-dark mt-3" href="/">Back to menu</a>
+
+    <a class="btn btn-dark mt-3" href="/list/create">Create a new List</a>
+
+
+
+</div>
+

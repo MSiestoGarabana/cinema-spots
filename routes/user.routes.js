@@ -7,12 +7,12 @@ const { getUserRoles } = require('../utils/role-handling')
 
 
 //Users lists
-router.get('/list', isLoggedIn, (req, res, next) => {
+router.get('/', isLoggedIn, (req, res, next) => {
 
     User
-    .find()
-    .then(user => res.render("users/user-list", { user } ))
-    .catch(err => next(err))
+        .find()
+        .then(user => res.render("users/user-list", { user } ))
+        .catch(err => next(err))
 
 })
 
