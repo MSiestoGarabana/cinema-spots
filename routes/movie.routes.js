@@ -27,18 +27,19 @@ router.all("/:id", (req, res, next) => {
 
     Movie.findOne({movie_ID:{$eq: id}})
     .then(response => {
-        if(response){
-            res.send("ESTA PELI YA EXISTE")
+        if(response) {
+            console.log(response)
+            res.render('movies/movies-detail', {movieData: response, mapsKey})
         }
         if(!response){
             moviesApiHandler
             .findMovieByID(id)
             .then(({ data }) => {   
-                const {title, genres, overview, poster_path: poster, release_date: releaseDate, markers, id: movie_ID} = data
+                const {title, genres, overview, poster_path, release_date, markers, id: movie_ID} = data
                 Movie
-                .create({title, genres, overview, poster, releaseDate, markers, movie_ID})
+                .create({title, genres, overview, poster_path, release_date, markers, movie_ID})
                 .then( res.render('movies/movies-detail', { movieData: data, mapsKey }))
-                .catch(err=>console.log(err))
+                .catch( err => console.log(err) )
             })
             .catch(err => next(err))
         }
