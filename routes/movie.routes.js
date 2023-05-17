@@ -1,7 +1,10 @@
-const express = require('express');
-const router = express.Router();
+const express = require('express')
+const router = express.Router()
+const { isLoggedIn } = require('../middlewares/routes-guard')
 const moviesApiHandler = require('../services/moviesByName-api.service')
 const Movie = require('../models/Movie.model');
+const List = require('../models/List.model')
+
 const capitalize = require('../utils/capitalize');
 
 router.get("/search", (req, res, next) => {
@@ -25,11 +28,15 @@ router.all("/:id", (req, res, next) => {
     const { id } = req.params
     const { API_KEY_MAPS: mapsKey } = process.env
 
+    const owner = req.session.currentUser._id
+
     Movie.findOne({movie_ID:{$eq: id}})
     .then(response => {
         if(response) {
-            console.log(response)
-            res.render('movies/movies-detail', {movieData: response, mapsKey})
+            List.find({ owner })
+            .then(listResponse => {
+                res.render('movies/movies-detail', { movieData: response, mapsKey, moviesList: listResponse })
+            })
         }
         if(!response){
             moviesApiHandler
@@ -38,7 +45,10 @@ router.all("/:id", (req, res, next) => {
                 const {title, genres, overview, poster_path, release_date, markers, id: movie_ID} = data
                 Movie
                 .create({title, genres, overview, poster_path, release_date, markers, movie_ID})
-                .then( res.render('movies/movies-detail', { movieData: data, mapsKey }))
+                .then(() =>{
+                    List.find({ owner })
+                     res.render('movies/movies-detail', { movieData: data, mapsKey })
+                    })
                 .catch( err => console.log(err) )
             })
             .catch(err => next(err))
