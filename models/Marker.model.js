@@ -2,10 +2,6 @@ const { Schema, model } = require("mongoose");
 
 const markerSchema = new Schema(
     {
-        movieTitle: {
-            type: String,
-            required: true
-        },
         name: { 
             type: String,
             required: true
