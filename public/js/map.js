@@ -10,7 +10,8 @@ function initMap() {
       styles: mapStyles.retro
     }
   )
-
+  
+  
   new google.maps.Marker({
     map: myMap,
     position: ironhackCoords,
