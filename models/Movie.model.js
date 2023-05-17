@@ -17,11 +17,11 @@ const movieSchema = new Schema(
             type: String, 
             required: true
         },
-        poster: { 
+        poster_path: { 
             type: String,
             required: true
         },
-        releaseDate: {
+        release_date: {
             type: Date,
             required: true
         },
