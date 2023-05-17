@@ -44,7 +44,7 @@ router.get('/:id/edit', isLoggedIn, checkUser, (req, res, next) => {
 
     User 
         .findById(id)
-        .then(user => res.render('users/user-edit', user))
+        .then(user =>initMap(), res.render('users/user-edit', user))
         .catch(err => next(err))
 })
 

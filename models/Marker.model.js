@@ -1,10 +1,10 @@
 const { Schema, model } = require("mongoose");
 
-const placeSchema = new Schema(
+const markerSchema = new Schema(
     {
         movieTitle: {
             type: String,
-            required: true,
+            required: true
         },
         name: { 
             type: String,
@@ -29,15 +29,18 @@ const placeSchema = new Schema(
             type: String,
             required: false
         }
+        markerId: {
+            type: ObjectId,
+            required: true
+        }
     },
     {
         timestamps: true
     }
 );
 
-placeSchema.index({ location: '2dsphere' })
+markerSchema.index({ location: '2dsphere' })
 
+const Marker = model('Marker', markerSchema);
 
-const Place = model("Place", placeSchema);
-
-module.exports = Place;
+module.exports = Marker;

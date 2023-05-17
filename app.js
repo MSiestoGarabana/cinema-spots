@@ -26,6 +26,9 @@ app.use('/user', userRoutes);
 const authRoutes = require("./routes/auth.routes");
 app.use("/", authRoutes);
 
+const markerRoutes = require("./routes/marker.routes");
+app.use("/marker", markerRoutes);
+
 const movieRoutes = require("./routes/movie.routes");
 app.use("/movie", movieRoutes);
 

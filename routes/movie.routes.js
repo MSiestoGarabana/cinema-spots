@@ -1,6 +1,5 @@
 const express = require('express');
 const router = express.Router();
-const Movie = require('../models/Movie.model')
 const moviesApiHandler = require('../services/moviesByName-api.service')
 
 router.get("/search", (req, res, next) => {
@@ -27,7 +26,7 @@ router.post("/search", (req, res, next) => {
 router.get("/:id", (req, res, next) => {
     const {id} = req.params
     const mapsKey = process.env.API_KEY_MAPS
-
+    
     moviesApiHandler
     .findMovieByID(id)
     .then(response => {res.render('movies/movies-detail', {movieData: response.data, mapsKey})})
