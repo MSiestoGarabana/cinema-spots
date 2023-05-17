@@ -39,9 +39,14 @@ router.get('/:id', (req, res, next) => {
 //List of movies in a list
 router.get('/:id/details', (req, res, next) => {
 
+   
     res.render('lists/list-details')
 })
 
+router.post('/:id/details', (req, res, next) => {
+
+
+})
 
 
 
