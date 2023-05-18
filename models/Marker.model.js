@@ -4,7 +4,7 @@ const markerSchema = new Schema(
     {
         name: { 
             type: String,
-            required: true
+            
         },
         description: {
             type: String,
@@ -19,14 +19,15 @@ const markerSchema = new Schema(
                 type: String
             },
             coordinates: [Number],
-            required: true
+         
         },
         movieFrame: {
             type: String,
             required: false
         },
-        markerId: {
-            type: ObjectId,
+        movie_ID: {
+            type: String,
+            //ref: 'Movie',
             required: true
         }
     },
