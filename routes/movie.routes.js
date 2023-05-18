@@ -28,7 +28,7 @@ router.all("/:id", (req, res, next) => {
     const { id } = req.params
     const { API_KEY_MAPS: mapsKey } = process.env
 
-    const owner = req.session.currentUser._id
+    const owner = req.session.currentUser.id
 
     Movie.findOne({movie_ID:{$eq: id}})
     .then(response => {

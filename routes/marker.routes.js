@@ -1,20 +1,22 @@
 const express = require("express")
+const Marker = require("../models/Marker.model")
 const router = express.Router()
 
-//const Marker = require('../models/Marker.model')
+router.post("/create", (req, res, next) => {
+     const {title, movie_ID, name, latitude, longitude, description, contributor, movieFrame} = req.body
+     console.log("COMMMMIIINGGG FROM REQ.BODY",title, movie_ID, name, latitude, longitude, description, contributor, movieFrame)
 
-router.post("/create/title/:id", (req, res, next) => {
-    res.send(req.body)
+     const location = {
+        type: 'Point',
+        coordinates: [latitude, longitude]
+     }
+
+    Marker
+    .create({name, description, location, movieFrame, movie_ID })
+    .then(res.redirect(`/movie/${movie_ID}`))
+    .catch(err => next(err))
+
 ///PASAR CONTRIBUIDOR
-
-   /*  const {id} = req.params
-    const {
-        name,
-        description,
-        contributor,
-        location,
-        movieFrame} = req.body */
-
 })
 
 
