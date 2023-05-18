@@ -36,7 +36,11 @@ const userSchema = new Schema(
     country: {
       type: String,
       required: false,
-    }
+    },
+    lists: [{
+            type: Schema.Types.ObjectId,
+            ref: 'List',
+        }],
   },
   {
     timestamps: true

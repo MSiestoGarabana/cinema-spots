@@ -9,11 +9,11 @@ const User = require("./../models/User.model")
 router.get('/signup', (req, res, next) => {
     
     res.render('auth/signup')
-
 })
 
 router.post('/signup', uploaderMiddleware.single('avatar'), (req, res, next) => {
 
+    console.log(req.file)
     const { path: avatar } = req.file
 
     const { name, email, password, role, description, country } = req.body

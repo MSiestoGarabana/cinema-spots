@@ -8,6 +8,9 @@ cloudinary.config({
     api_secret: process.env.CLOUDINARY_SECRET
 })
 
-const storage = new CloudinaryStorage({ cloudinary })
+const storage = new CloudinaryStorage({ 
+    cloudinary, params: {
+    allowed_formats: ['jpg', 'png']
+} })
 
 module.exports = multer({ storage })
