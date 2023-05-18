@@ -47,7 +47,6 @@ router.all("/:id", (req, res, next) => {
         if(response) {
             List.find({ owner })
             .then(listResponse => {
-                console.log(response)
                 res.render('movies/movies-detail', { movieData: response, mapsKey, moviesList: listResponse })
             })
         }

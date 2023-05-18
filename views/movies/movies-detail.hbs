@@ -1,5 +1,5 @@
 {{#with movieData}}
-<input type="hidden" id="markersID" value="kdnfkanfkjdsan">
+<input type="hidden" id="movieID" value="{{movie_ID}}">
 
 <div id="map"></div>
 <div class="container" id="movieDetail__container">
@@ -32,10 +32,10 @@
                         <a class="btn btn-sm btn-dark m-1" href="/movie/search">Search a new movie</a>
 
                         {{#each ../moviesList}}
-                        
-                            <form action="/movie/addToList/{{name}}/{{../_id}}" method="POST">
-                                <input type="submit" value="{{name}}" class="btn btn-sm btn-danger">
-                            </form>
+
+                        <form action="/movie/addToList/{{name}}/{{../_id}}" method="POST">
+                            <input type="submit" value="{{name}}" class="btn btn-sm btn-danger">
+                        </form>
 
                         {{/each}}
                     </div>
