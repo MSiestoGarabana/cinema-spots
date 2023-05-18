@@ -58,8 +58,7 @@ router.all("/:id", (req, res, next) => {
                 const {title, genres, overview, poster_path, release_date, markers, id: movie_ID} = data
                 Movie
                 .create({title, genres, overview, poster_path, release_date, markers, movie_ID})
-                .then(movieResponse =>{
-
+                .then(movieResponse => {
                     List.find({ owner })
                         res.render('movies/movies-detail', { movieData: movieResponse, mapsKey })
                     })

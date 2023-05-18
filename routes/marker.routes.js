@@ -5,6 +5,7 @@ const router = express.Router()
 
 
 router.post("/create", (req, res, next) => {
+
      const {title, movie_ID, name, latitude, longitude, description, contributor, movieFrame} = req.body
 
      const location = {
@@ -15,20 +16,15 @@ router.post("/create", (req, res, next) => {
     Marker
     .create({name, description, location, movieFrame, movie_ID })
     .then( markerData => {
-      Movie.findOne({movie_ID: {$eq: movie_ID}})
-      .then(response => {
-         console.log("------------------RESPONSE ANTE DEL PUSH",response,"--------------")
-         console.log("------------------MARKERDATA",markerData._id,"--------------")
-         response.markers.push(markerData._id)
-         console.log("------------------RESPONSE DESPUES DEL PUSH",response,"--------------")
+      Movie.findOneAndUpdate({movie_ID: {$eq: movie_ID}}, { $push: {markers: markerData._id}}, {new: true})
+      .then(updatedMovie => {
+         res.redirect(`/movie/${updatedMovie.movie_ID}`)
       })
       .catch(err=>next(err))
     }
     )
-    .then(res.redirect(`/movie/${movie_ID}`))
     .catch(err => next(err))
-
-///PASAR CONTRIBUIDOR
+    
 })
 
 
