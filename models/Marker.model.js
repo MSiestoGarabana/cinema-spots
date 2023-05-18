@@ -27,7 +27,6 @@ const markerSchema = new Schema(
         },
         movie_ID: {
             type: String,
-            //ref: 'Movie',
             required: true
         }
     },

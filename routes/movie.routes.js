@@ -28,15 +28,13 @@ router.all("/:id", (req, res, next) => {
     const { id } = req.params
     const { API_KEY_MAPS: mapsKey } = process.env
 
-<<<<<<< HEAD
     const owner = req.session.currentUser?._id
-=======
-    const owner = req.session.currentUser.id
->>>>>>> c4a3671c17a9cc1497cc5a599d5a89b67de33553
 
     Movie
     .findOne({movie_ID:{$eq: id}})
+    .populate('markers')
     .then(response => {
+        console.log("----------------POPULATED MOVIE--------------", response)
         if(response) {
             List.find({ owner })
             .then(listResponse => {
@@ -50,9 +48,11 @@ router.all("/:id", (req, res, next) => {
                 const {title, genres, overview, poster_path, release_date, markers, id: movie_ID} = data
                 Movie
                 .create({title, genres, overview, poster_path, release_date, markers, movie_ID})
-                .then(() =>{
+                .populate('markers')
+                .then(movieResponse =>{
+
                     List.find({ owner })
-                        res.render('movies/movies-detail', { movieData: data, mapsKey })
+                        res.render('movies/movies-detail', { movieData: movieResponse, mapsKey })
                     })
                 .catch( err => next(err) )
             })
