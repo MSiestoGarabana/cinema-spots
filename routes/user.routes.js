@@ -45,14 +45,26 @@ router.get('/:id/edit', isLoggedIn, checkOwnerOrAdmin, (req, res, next) => {
 
 router.post('/:id/edit', isLoggedIn, checkOwnerOrAdmin, uploaderMiddleware.single("avatar"), (req, res, next) => {
 
-    const { path: avatar } =req.file
     const { name, email, password, role, description, country } = req.body
     const { id } = req.params
 
-    User
-        .findByIdAndUpdate(id, { name, email, password, role, description, avatar, country })
-        .then(() => res.redirect('/'))
-        .catch(err => next(err))
+
+    if (req.file) {
+        const { path: avatar } = req.file
+
+        User
+            .findByIdAndUpdate(id, { name, email, password, role, description, avatar, country })
+            .then(() => res.redirect('/'))
+            .catch(err => next(err))
+
+    }
+    else {
+
+        User
+            .findByIdAndUpdate(id, { name, email, password, role, description, country })
+            .then(() => res.redirect('/'))
+            .catch(err => next(err))
+    }
 })
 
 

@@ -31,11 +31,11 @@
                   <a class="nav-link" href="/">Home</a>
                </li>
 
+               {{#if isLoggedUser}}
+
                <li class="nav-item">
                   <a class="nav-link" href="/user/">Users</a>
                </li>
-
-               {{#if isLoggedUser}}
                
                <img src="{{isLoggedUser.avatar}}" class="rounded-circle" style="width: 30px;" alt="avatar" />
                

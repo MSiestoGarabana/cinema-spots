@@ -52,5 +52,17 @@ router.get('/:id/details', (req, res, next) => {
     
 })
 
+//Modify list === delete movie from a list
+router.post('/delete/:movieID/from/:listID', (req, res, next) => {
+    
+    const { movieID, listID } = req.params
+    List
+        .findOneAndUpdate({_id: listID}, {$pull: {movies: movieID}})
+        .then(() => {
+            res.redirect(`/list/${listID}/details`)
+        })
+        .catch(err => next(err))
+})
+
 
 module.exports = router
