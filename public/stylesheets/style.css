@@ -25,8 +25,7 @@ img {
 }
 
 #listCard__body--movieList:hover {
-  height: 32vh;
-  width: 20rem;
+  box-shadow: 0px 0px 15px rgb(74, 74, 74);
 }
 
 #listCard__title {
