@@ -2,6 +2,7 @@ const express = require('express')
 const router = express.Router()
 
 const List = require('../models/List.model')
+const Movie = require('../models/Movie.model')
 
 
 //Create list
@@ -18,7 +19,7 @@ router.post('/create', (req, res, next) => {
     List
         .create({ name, owner })
         .then(() => res.redirect('/movie/search'))
-        .catch(err => console.log(err))
+        .catch(err => next(err))
 
 })
 
@@ -39,14 +40,17 @@ router.get('/:id', (req, res, next) => {
 //List of movies in a list
 router.get('/:id/details', (req, res, next) => {
 
-   
-    res.render('lists/list-details')
+    const { id } = req.params
+
+    Movie
+        .findById(id)
+        .then(movie => res.render('lists/list-details', { movie }))
+        .catch(err => next(err))
+    
 })
 
-router.post('/:id/details', (req, res, next) => {
 
 
-})
 
 
 
