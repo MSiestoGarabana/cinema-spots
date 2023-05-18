@@ -38,12 +38,10 @@ router.post('/login', (req, res, next) => {
 
     const { email, password } = req.body
 
-    if ( email.length === 0 || password.length === 0) {
-        
+    if ( email.length === 0 || password.length === 0) {   
         res.render('auth/login', {errorMessage: 'You must fill all the fields'})
         return
     }
-
     User
         .findOne({ email })
         .then(user => {

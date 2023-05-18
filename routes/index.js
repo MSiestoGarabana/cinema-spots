@@ -1,5 +1,8 @@
 module.exports = app => {
 
+    const apiRoutes = require("./api.routes");
+    app.use("/api", apiRoutes)
+
     const indexRoutes = require("./index.routes");
     app.use("/", indexRoutes);
     
