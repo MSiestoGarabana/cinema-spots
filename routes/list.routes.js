@@ -42,22 +42,15 @@ router.get('/:id/details', (req, res, next) => {
 
     const { id } = req.params
 
-    Movie
+    List
         .findById(id)
-        .then(movie => res.render('lists/list-details', { movie }))
+        .populate('movies')
+        .then(list =>
+             res.render('lists/list-details',  {list} )
+             )
         .catch(err => next(err))
     
 })
-
-
-
-
-
-
-
-
-
-
 
 
 module.exports = router
