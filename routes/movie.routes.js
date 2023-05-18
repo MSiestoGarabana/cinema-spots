@@ -32,7 +32,9 @@ router.all("/:id", (req, res, next) => {
 
     Movie
     .findOne({movie_ID:{$eq: id}})
+    .populate('markers')
     .then(response => {
+        console.log("----------------POPULATED MOVIE--------------", response)
         if(response) {
             List.find({ owner })
             .then(listResponse => {
@@ -46,9 +48,11 @@ router.all("/:id", (req, res, next) => {
                 const {title, genres, overview, poster_path, release_date, markers, id: movie_ID} = data
                 Movie
                 .create({title, genres, overview, poster_path, release_date, markers, movie_ID})
-                .then(() =>{
+                .populate('markers')
+                .then(movieResponse =>{
+
                     List.find({ owner })
-                        res.render('movies/movies-detail', { movieData: data, mapsKey })
+                        res.render('movies/movies-detail', { movieData: movieResponse, mapsKey })
                     })
                 .catch( err => next(err) )
             })
