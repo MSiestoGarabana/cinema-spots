@@ -24,15 +24,6 @@ router.post("/search", (req, res, next) => {
         .catch(err => next(err)) 
 })
 
-router.post('/addToList/:listName/:movieID', (req, res, next) => {
-
-    const { movieID, listName } = req.params
-    
-    List
-        .findOneAndUpdate({name: listName}, {$push: {movies: movieID}})
-        .then(() => res.redirect('/movie/search'))
-        .catch(err => next(err))
-})
 
 router.all("/:id", (req, res, next) => {
     const { id } = req.params
@@ -47,7 +38,7 @@ router.all("/:id", (req, res, next) => {
         if(response) {
             List.find({ owner })
             .then(listResponse => {
-                res.render('movies/movies-detail', { movieData: response, mapsKey, moviesList: listResponse })
+                res.render('movies/movies-detail', { movieData: response, mapsKey, moviesList: listResponse})
             })
         }
         if(!response){
@@ -67,6 +58,16 @@ router.all("/:id", (req, res, next) => {
         }
     })
     .catch(err=>next(err))
+})
+
+router.post('/addToList/:listName/:movieID', (req, res, next) => {
+
+    const { movieID, listName } = req.params
+    
+    List
+        .findOneAndUpdate({name: listName}, {$push: {movies: movieID}})
+        .then(() => res.redirect('/movie/search'))
+        .catch(err => next(err))
 })
 
 
