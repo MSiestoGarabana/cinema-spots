@@ -1,38 +1,19 @@
-<div class="container">
+<div id="createList__container--body" class="container">
+    <div id="createList__container--card" class="card col-md-12">
 
-    <div class="row justify-content-center">
+        <h1 id="createList__title--mainTitle">Create a new List</h1>
+        <form id="createList" action="/list/create" method="POST">
 
-        <div class="col-md-6">
+            <input id="createList__input" placeholder="Name your list" type="text" class="form-control" id="name"
+                name="name">
+            <button id="createList__button" type="submit" class="btn btn-dark block">Create list</button>
 
-            <h1>Create a new List</h1>
+            {{#if errorMessage}}
+            <div id="createList" id="errorMessage">
+                <p>{{errorMessage}}</p>
+            </div>
+            {{/if}}
 
-            <hr>
-
-            <form action="/list/create" method="POST">
-
-                <div class="mb-3 row">
-
-                    <div class="mb-3">
-                        <label for="name" class="form-label">Name of your list</label>
-                        <input type="text" class="form-control" id="name" name="name">
-                    </div>
-
-                </div>
-
-                <div class="d-grid gap-2">
-                    <button type="submit" class="btn btn-dark block">Create list and search movie</button>
-                </div>
-
-                {{#if errorMessage}}
-
-                <div id="errorMessage">
-                    <p>{{errorMessage}}</p>
-                </div>
-
-                {{/if}}
-
-            </form>
-        </div>
+        </form>
     </div>
-
 </div>

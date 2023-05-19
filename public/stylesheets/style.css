@@ -15,28 +15,50 @@ img {
   width: 100%;
 }
 
-#listCard__body--movieList {
+#movieList__Container--bodyContainer {
+  padding-top: 6%;
+}
+
+#movieList__title {
+  text-align: center;
+  font-size: 6vh;
+  font-weight: 800;
+  margin-bottom: 5%;
+}
+
+#movieList__listCard--body {
   height: 30vh;
   width: 18rem;
-  border: 10px solid rgb(0, 0, 0);
+  border: 10px solid rgb(14, 14, 14);
   border-radius: 5px;
   background-size: cover;
   background-repeat: no-repeat;
+  transition: box-shadow 0.2s ease-out 100ms;
 }
 
-#listCard__body--movieList:hover {
-  box-shadow: 0px 0px 15px rgb(74, 74, 74);
+#movieList__listCard--body:hover {
+  box-shadow: 0px 0px 30px rgb(74, 74, 74);
 }
 
-#listCard__title {
+#movieList__cardTitle {
+  text-align: center;
   position: absolute;
+  font-weight: 800;
   left: 0;
   bottom: 0;
   color: white;
-  background-color: black;
+  background-color: rgb(14, 14, 14);
   width: 100%;
   margin: 0;
   padding: 8%;
+  padding-bottom: 3%;
+}
+
+#movieDetail__title {
+  text-align: center;
+  font-size: 6vh;
+  font-weight: 800;
+  margin-top: 5%;
 }
 
 #movieDetail__container {
@@ -46,16 +68,184 @@ img {
   justify-content: center;
 }
 
-#movieDetail__downSectionContainer {
-  background-color: rgb(149, 149, 149);
+#movieDetail__movieCard {
+  margin: 0% 10% 10% 0%
+}
+
+#movieDetail__textContainer {
+  height: 100%;
+  padding: 4%;
+}
+
+#movieDetail__button {
+  margin: 2%;
+}
+
+#movieDetail__container--addToListButtons {
+  margin-top: 5%;
+}
+
+#movieDetail__button--addToList {
+  margin: 2%;
+}
+
+
+
+#list__Container--bodyContainer {
+  padding-top: 6%;
+}
+
+#list__title {
+  text-align: center;
+  font-size: 6vh;
+  font-weight: 800;
+  margin-bottom: 5%;
+}
+
+#list__listCard--body {
+  height: 30vh;
+  width: 18rem;
+  border: 10px solid rgb(14, 14, 14);
+  border-radius: 5px;
+  background-size: cover;
+  background-repeat: no-repeat;
+  transition: box-shadow 0.2s ease-out 100ms;
+}
+
+#list__listCard--body:hover {
+  box-shadow: 0px 0px 30px rgb(74, 74, 74);
+}
+
+#list__cardTitle {
+  text-align: center;
+  position: absolute;
+  font-weight: 800;
+  left: 0;
+  bottom: 0;
+  color: white;
+  background-color: rgb(14, 14, 14);
   width: 100%;
+  margin: 0;
+  padding: 8%;
+  padding-bottom: 3%;
 }
 
 #map {
   height: 70vh;
   width: 90%;
   margin-left: 5%;
-  margin-top: 5%;
+  margin-top: 3%;
   border-radius: 40px;
   background-color: rgb(233, 233, 233);
+  transition: box-shadow 1s ease-out 100ms;
+}
+
+#map:hover {
+  box-shadow: 0px 0px 40px rgb(74, 74, 74);
+}
+
+#movieDetail__container--all {
+  margin-top: 5%;
+}
+
+#movieDetail__container--latLon {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+#latitude {
+  margin-top: 4%;
+  margin-right: 2%;
+}
+
+#longitude {
+  margin-top: 4%;
+  margin-left: 2%;
+}
+
+#name {
+  margin-top: 4%;
+}
+
+#description {
+  margin-top: 4%;
+}
+
+#createList__container--body {
+  position: absolute;
+  left: 30%;
+  top: 35%;
+  width: 35%;
+}
+
+#createList__container--card {
+  padding: 4%;
+  align-items: center;
+  transition: box-shadow 1s ease-out 100ms;
+}
+
+#createList__container--card:hover {
+  box-shadow: 0px 0px 40px rgb(74, 74, 74);
+}
+
+#createList__title--mainTitle {
+  border-bottom: 2px solid currentColor;
+  display: inline-block;
+  line-height: 0.85;
+  text-shadow:
+    2px 2px white,
+    2px -2px white,
+    -2px 2px white,
+    -2px -2px white;
+  margin: 4%;
+}
+
+#createList__input {
+  margin: 4%;
+  width: 100%;
+}
+
+#createList__button {
+  margin: 4%;
+  width: 100%;
+}
+
+#searchMovie__container--body {
+  position: absolute;
+  left: 30%;
+  top: 35%;
+  width: 35%;
+}
+
+#searchMovie__container--card {
+  padding: 4%;
+  align-items: center;
+  transition: box-shadow 1s ease-out 100ms;
+}
+
+#searchMovie__container--card:hover {
+  box-shadow: 0px 0px 40px rgb(74, 74, 74);
+}
+
+#searchMovie__title--mainTitle {
+  border-bottom: 2px solid currentColor;
+  display: inline-block;
+  line-height: 0.85;
+  text-shadow:
+    2px 2px white,
+    2px -2px white,
+    -2px 2px white,
+    -2px -2px white;
+  margin: 4%;
+}
+
+#searchMovie__input {
+  margin: 4%;
+  width: 100%;
+}
+
+#searchMovie__button {
+  margin: 4%;
+  width: 100%;
 }
