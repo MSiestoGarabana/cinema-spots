@@ -1,29 +1,26 @@
-<div class="container">
+<div class="container" id="List__Container--bodyContainer">
 
-    <h2>{{list.name}}</h2>
-
-    <hr>
+    <h2 id="List__title">{{list.name}}</h2>
 
     <div class="row justify-content-between">
         {{#each list}}
-
-            {{#each movies}}
-                <div class="col">
-                    <form action="/movie/{{this.movie_ID}}" method="POST">
-                        <a href="/movie/{{this.movie_ID}}" class="col-4 card m-2" id="listCard__body--movieList"
-                            style="background-image: url('https://image.tmdb.org/t/p/original/{{poster_path}}')">
-                            <h5 id="listCard__title">{{title}}</h5>
-                        </a>
-                    </form>
-                </div>
-                <form action="/list/delete/{{_id}}/from/{{../_id}}" method="POST">
-                    <input type="submit" value="Delete this film from {{../name}}" class="btn btn-sm btn-danger">
-                </form>
-            {{/each}}
-
+        {{#each movies}}
+        <div class="col">
+            <form action="/movie/{{this.movie_ID}}" method="POST">
+                <a href="/movie/{{this.movie_ID}}" class="col-4 card m-2" id="list__listCard--body"
+                    style="background-image: url('https://image.tmdb.org/t/p/original/{{poster_path}}')">
+                    <h5 id="list__cardTitle">{{title}}</h5>
+                </a>
+            </form>
+        </div>
+        <form action="/list/delete/{{_id}}/from/{{../_id}}" method="POST">
+            <input type="submit" value="Delete this film from {{../name}}" class="btn btn-sm btn-danger"
+                id="listCard__button--delete">
+        </form>
+        {{/each}}
         {{/each}}
     </div>
 
 
 </div>
-    <a class="btn btn-dark mt-3" href="/">Back to menu</a>
+<a class="btn btn-dark mt-3" href="/">Back to menu</a>

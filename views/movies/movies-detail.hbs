@@ -1,18 +1,20 @@
 {{#with movieData}}
 <input type="hidden" id="movieID" value="{{movie_ID}}">
 
+<h1 id="movieDetail__title">"{{title}}" filming locations</h1>
 <div id="map"></div>
-<div class="container" id="movieDetail__container">
-    <div id="movieDetail__downSectionContainer" class="row">
-        <div class="col-6">/
-            <div class="card" style="width: 50rem;">
-                <div class="card-body d-flex">
+<div class="container" id="movieDetail__container--all">
+    <div id="movieDetail__container--down" class="row">
 
-                    <div id="detailCard__body--imageContainer">
+        <div class="col-8" id="movieDetail__container--downLeft">
+
+            <div class="card" id="movieDetail__movieCard">
+                <div class="card-body d-flex">
+                    <div id="movieDetail__imageContainer">
                         <img src="https://image.tmdb.org/t/p/original/{{poster_path}}" alt="{{title}} poster image">
                     </div>
 
-                    <div style="height: 100%">
+                    <div id="movieDetail__textContainer">
                         <h2>{{title}}</h2>
                         <p>{{overview}}</p>
 
@@ -22,53 +24,55 @@
                             <li>{{name}}</li>
                             {{/each}}
                         </ul>
-                        <h3>markers:</h3>
+
+                        {{!--<h3>markers:</h3>
                         <ul>
                             {{#each markers}}
                             <li>{{location}}</li>
                             {{/each}}
-                        </ul>
-                        <a class="btn btn-sm btn-dark" href="/">Back to menu</a>
-                        <a class="btn btn-sm btn-dark m-1" href="/movie/search">Search a new movie</a>
+                        </ul> --}}
 
-                        {{#each ../moviesList}}
-                        
-                            <form action="/movie/addToList/{{name}}/{{../_id}}" method="POST">
-                                <input type="submit" value="Add this movie to {{name}}" class="btn btn-sm btn-danger">
+                        <a class="btn btn-sm btn-dark" href="/" id="movieDetail__button">Back to menu</a>
+                        <a class="btn btn-sm btn-dark m-1" href="/movie/search" id="movieDetail__button">Search a new
+                            movie</a>
+                        <div id="movieDetail__container--addToListButtons">
+                            {{#each ../moviesList}}
+                            <form action="/movie/addToList/{{name}}/{{../_id}}" method="POST"
+                                id="movieDetail__button--addToList">
+                                <input type="submit" value="Add this movie to your {{name}} list"
+                                    class="btn btn-sm btn-warning">
                             </form>
-
-                        {{/each}}
+                            {{/each}}
+                        </div>
                     </div>
-
                 </div>
             </div>
         </div>
 
         {{#if ../isLoggedUser}}
-        <div class="col-6">
+        <div class="col-4" id="movieDetail__container--downRigth">
             <form action="/marker/create" method="POST">
-                <div style="visibility: hidden;" class="col">
+                <div style="visibility: hidden; display:none" class="col">
                     <input value="{{title}}" type="text" class="form-control" id="title" name="title">
                 </div>
-                <div style="visibility: hidden;" class="col">
+                <div style="visibility: hidden; display:none" class="col">
                     <input value="{{movie_ID}}" placeholder="{{movie_ID}}" type="text" class="form-control"
                         id="movie_ID" name="movie_ID">
                 </div>
+
+                <h3>Help our community by adding markers</h3>
                 <div class="col">
                     <input placeholder="Name your marker" type="text" class="form-control" id="name" name="name">
                 </div>
 
-                <div>
-                    <label for="latitude" class="form-label">latitude:</label>
-                    <input placeholder="latitude" id="latitude" name="latitude" class="form-control">
-
-                    <label for="longitude" class="form-label">longitude:</label>
-                    <input placeholder="longitude" id="longitude" name="longitude" class="form-control">
+                <div id="movieDetail__container--latLon">
+                    <input placeholder="Latitude" id="latitude" name="latitude" class="form-control">
+                    <input placeholder="Longitude" id="longitude" name="longitude" class="form-control">
                 </div>
 
                 <div class="mb-3">
-                    <label for="description" class="form-label">Description</label>
-                    <textarea class="form-control" id="description" name="description"></textarea>
+                    <textarea placeholder="Add a description" class="form-control" id="description"
+                        name="description"></textarea>
                 </div>
 
                 {{!-- <div class="mb-3">
@@ -77,13 +81,14 @@
                 </div> --}}
 
                 <div class="d-grid gap-2">
-                    <button type="submit" class="btn btn-dark block">Add Marker</button>
+                    <button id="movieDetail__button--submitMarker" type="submit" class="btn btn-dark block">Add
+                        Marker</button>
                 </div>
             </form>
 
         </div>
         {{/if}}
-        
+
         {{#if errorMessage}}
 
         <div id="errorMessage">

@@ -1,36 +1,25 @@
-<div class="container">
+<div id="searchMovie__container--body" class="container">
 
-    <div class="row justify-content-center">
+    <div id="searchMovie__container--card" class="card col-md-12">
 
-        <div class="col-md-6">
+        <h1 id="searchMovie__title--mainTitle">Search a movie</h1>
 
-            <h1>Search a movie</h1>
+        <form action="/movie/search" method="POST">
 
-            <hr>
+            <input id="searchMovie__input" placeholder="Movie name" type="text" class="form-control" id="title"
+                name="title">
+            <button id="searchMovie__button" type="submit" class="btn btn-dark block">Search</button>
 
-            <form action="/movie/search" method="POST">
+            {{#if errorMessage}}
 
-                <div class="mb-3">
-                    <input required placeholder="Write movie title" type="text" class="form-control" id="title"
-                        name="title">
-                </div>
+            <div id="errorMessage">
+                <p>{{errorMessage}}</p>
+            </div>
 
-                <div class="d-grid gap-2">
-                    <button type="submit" class="btn btn-dark block">Access</button>
-                </div>
+            {{/if}}
 
-                {{#if errorMessage}}
-
-                <div id="errorMessage">
-                    <p>{{errorMessage}}</p>
-                </div>
-
-                {{/if}}
-
-            </form>
-
-        </div>
+        </form>
 
     </div>
-    
+
 </div>
