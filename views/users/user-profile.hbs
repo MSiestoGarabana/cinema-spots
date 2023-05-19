@@ -4,7 +4,7 @@
 
         <div class="row d-flex justify-content-center align-items-center h-100">
 
-            <div class="col col-lg-6 mb-4 mb-lg-0">
+            <div class="col col-lg-10 mb-4 mb-lg-0">
 
                 <div class="card mb-3" style="border-radius: .5rem;">
 
@@ -13,15 +13,21 @@
                         <div class="col-md-4 gradient-custom text-center text-white">
 
                             <img src="{{user.avatar}}"
-                                alt="avatar" class="img-fluid my-5" style="width: 180px;" />
+                                alt="avatar" class="img-fluid my-5" style="width: 95%; margin-left: 5%" />
                                                                                                            
                         </div>
                         
                         <div class="col-md-8">
                             
-                            <div class="card-body p-4">
+                            <div class="card-body p-4 mt-3">
                                
                                 <h5>{{user.name}}</h5>
+
+                                {{!-- <ul>
+                                    {{#each user.list}}
+                                    <li>{{name}}</li>           corregir
+                                    {{/each}}
+                                </ul> --}}
                                 
                                 <hr class="mt-0 mb-4">
                                 
@@ -46,23 +52,24 @@
                                         <h6>Country</h6>
                                         <p class="text-muted">{{user.country}}</p>
                                     </div>
+
                                 </div>
                                 
                                 <div class="d-flex justify-content-start">
                                     {{#if userRole.isOwner}}
-                                    <a href="/user/{{user.id}}/edit" class="btn btn-warning">Edit</a>
-                                    
-                                    <form action="/user/{{user.id}}/delete" method="POST" style="display: inline">
-                                        <input type="submit" value="Delete" class="btn btn-danger">
-                                    </form>
+                                        <a href="/user/{{user.id}}/edit" class="btn btn-warning">Edit</a>
+                                        
+                                        <form action="/user/{{user.id}}/delete" method="POST" style="display: inline">
+                                            <input type="submit" value="Delete" class="btn btn-danger">
+                                        </form>
                                     {{/if}}
                                     
                                     {{#if userRole.isAdmin}}
-                                    <a href="/user/{{user.id}}/edit" class="btn btn-warning">Edit</a>
-                                    
-                                    <form action="/user/{{user.id}}/delete" method="POST" style="display: inline">
-                                        <input type="submit" value="Delete" class="btn btn-danger">
-                                    </form>
+                                        <a href="/user/{{user.id}}/edit" class="btn btn-warning">Edit</a>
+                                        
+                                        <form action="/user/{{user.id}}/delete" method="POST" style="display: inline">
+                                            <input type="submit" value="Delete" class="btn btn-danger">
+                                        </form>
                                     {{/if}}
                                     
                                 </div>
