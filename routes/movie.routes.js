@@ -25,14 +25,37 @@ router.post("/search", (req, res, next) => {
 })
 
 
-router.all("/:id", (req, res, next) => {
-    const { id } = req.params
-    const { API_KEY_MAPS: mapsKey } = process.env
+router.all("/:movieId", (req, res, next) => {
 
+    const { movieId } = req.params
+    const { API_KEY_MAPS: mapsKey } = process.env
     const owner = req.session.currentUser?._id
 
-    Movie
-    .findOne({movie_ID:{$eq: id}})
+    Promise.all([
+        Movie.findOne({movie_ID:{$eq: movieId}}).populate('markers'),
+        List.find({ owner })
+    ])
+    .then(([movieResponse, listResponse]) => {
+
+        if(movieResponse) {
+            res.render('movies/movies-detail', { movieData: movieResponse, mapsKey, moviesList: listResponse})
+        } 
+
+        if(!movieResponse) {
+            moviesApiHandler
+            .findMovieByID(movieId)
+            .then(({data}) => {
+                const {title, genres, overview, poster_path, release_date, markers, id: movie_ID} = data;
+                return Movie.create({title, genres, overview, poster_path, release_date, markers, movie_ID })
+                .then((movieData) => {
+                    res.render('movies/movies-detail', {movieData, mapsKey, moviesList: listResponse})
+                })
+            })
+        }
+    })
+
+    /* Movie
+    .findOne({movie_ID:{$eq: movieId}})
     .populate('markers')
     .then(response => {
         if(response) {
@@ -43,30 +66,32 @@ router.all("/:id", (req, res, next) => {
         }
         if(!response){
             moviesApiHandler
-            .findMovieByID(id)
+            .findMovieByID(movieId)
             .then(({ data }) => {   
                 const {title, genres, overview, poster_path, release_date, markers, id: movie_ID} = data
                 Movie
                 .create({title, genres, overview, poster_path, release_date, markers, movie_ID})
                 .then(movieResponse => {
                     List.find({ owner })
-                        res.render('movies/movies-detail', { movieData: movieResponse, mapsKey })
+                    .then(listResponse => {
+                        res.render('movies/movies-detail', { movieData: movieResponse, mapsKey, moviesList: listResponse })
+                    })
                     })
                 .catch( err => next(err) )
             })
             .catch(err => next(err))
         }
     })
-    .catch(err=>next(err))
+    .catch(err=>next(err)) */
 })
 
 router.post('/addToList/:listName/:movieID', (req, res, next) => {
 
     const { movieID, listName } = req.params
-    
+
     List
         .findOneAndUpdate({name: listName}, {$push: {movies: movieID}})
-        .then(() => res.redirect('/movie/search'))
+        .then(() => res.redirect(`/movie/search`))
         .catch(err => next(err))
 })
 

@@ -12,15 +12,22 @@
                     <h5 id="list__cardTitle">{{title}}</h5>
                 </a>
             </form>
+            <form action="/list/delete/{{_id}}/from/{{../_id}}" method="POST">
+                <input type="submit" value="Delete this film from {{../name}}" class="btn btn-sm btn-danger"
+                    id="listCard__button--delete">
+            </form>
         </div>
-        <form action="/list/delete/{{_id}}/from/{{../_id}}" method="POST">
-            <input type="submit" value="Delete this film from {{../name}}" class="btn btn-sm btn-danger"
-                id="listCard__button--delete">
-        </form>
         {{/each}}
         {{/each}}
     </div>
 
 
 </div>
-<a class="btn btn-dark mt-3" href="/">Back to menu</a>
+
+<div class="container mt5 my-5">
+
+    <div class="text-center">
+        <a class="btn btn-dark mt-3" href="/">Back to menu</a>
+    </div>
+
+</div>
